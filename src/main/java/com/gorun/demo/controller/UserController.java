@@ -1,6 +1,5 @@
 package com.gorun.demo.controller;
 
-import com.gorun.demo.mapper.UserMapper;
 import com.gorun.demo.model.User;
 import com.gorun.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
