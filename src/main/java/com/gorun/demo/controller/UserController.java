@@ -3,6 +3,7 @@ package com.gorun.demo.controller;
 import com.gorun.demo.model.User;
 import com.gorun.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,12 @@ public class UserController {
 
     @RequestMapping(value = "/insert", produces = {"application/json;" +
             "charset=UTF-8"})
+    @Transactional(rollbackFor = {IllegalArgumentException.class})
     public int insert(User user) {
-        return userService.insertData(user);
+        int res = userService.insertData(user);
+        if (user.getName().equals("gorun")) {
+            throw new IllegalArgumentException("该条记录已存在，事物将回滚");
+        }
+        return res;
     }
 }
