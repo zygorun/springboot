@@ -23,11 +23,22 @@ public class UserController {
 
     @RequestMapping(value = "/insert", produces = {"application/json;" +
             "charset=UTF-8"})
-    @Transactional(rollbackFor = {IllegalArgumentException.class})
+    @Transactional(rollbackFor = {IllegalArgumentException.class})//表示数据存在回滚
     public int insert(User user) {
         int res = userService.insertData(user);
         if (user.getName().equals("gorun")) {
-            throw new IllegalArgumentException("该条记录已存在，事物将回滚");
+            throw new IllegalArgumentException("该条记录已存在，事务将回滚");
+        }
+        return res;
+    }
+
+    @RequestMapping(value = "/insertWithoutRollBack", produces = {"application/json;" +
+            "charset=UTF-8"})
+    @Transactional(noRollbackFor = {IllegalArgumentException.class})//表示数据存在不回滚
+    public int insertWithoutRollBack(User user) {
+        int res = userService.insertData(user);
+        if (user.getName().equals("gorun")) {
+            throw new IllegalArgumentException("该条记录已存在，事务将回滚");
         }
         return res;
     }
