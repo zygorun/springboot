@@ -21,10 +21,10 @@ public class UserController {
         return userService.allData();
     }
 
-    @RequestMapping(value = "/insert", produces = {"application/json;" +
+    @RequestMapping(value = "/RollBack", produces = {"application/json;" +
             "charset=UTF-8"})
     @Transactional(rollbackFor = {IllegalArgumentException.class})//表示数据存在回滚
-    public int insert(User user) {
+    public int insertRollBack(User user) {
         int res = userService.insertData(user);
         if (user.getName().equals("gorun")) {
             throw new IllegalArgumentException("该条记录已存在，事务将回滚");
@@ -41,5 +41,17 @@ public class UserController {
             throw new IllegalArgumentException("该条记录已存在，事务将回滚");
         }
         return res;
+    }
+
+    @RequestMapping(value = "/insert", produces = {"application/json;" +
+            "charset=UTF-8"})
+    public int insert(User user) {
+        return userService.insertData(user);
+    }
+
+    @RequestMapping(value = "/selectOneInfo", produces = {"application/json;" +
+            "charset=UTF-8"})
+    public User selectOneInfo(int id) {
+        return userService.selectOneInfo(id);
     }
 }
