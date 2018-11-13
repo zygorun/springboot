@@ -21,7 +21,7 @@ public class UserController {
         return userService.allData();
     }
 
-    @RequestMapping(value = "/RollBack", produces = {"application/json;" +
+    @RequestMapping(value = "/insertRollBack", produces = {"application/json;" +
             "charset=UTF-8"})
     @Transactional(rollbackFor = {IllegalArgumentException.class})//表示数据存在回滚
     public int insertRollBack(User user) {

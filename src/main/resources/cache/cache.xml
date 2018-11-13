@@ -8,7 +8,7 @@
         <heap unit="MB">1</heap>
     </cache-template>
 
-    <cache alias="test" uses-template="default">
+    <cache alias="selectCache" uses-template="default">
         <expiry>
             <ttl unit="seconds">10</ttl>
         </expiry>

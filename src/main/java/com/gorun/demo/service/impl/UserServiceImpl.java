@@ -20,13 +20,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CachePut(value = "gorun", key = "1")
+    @CachePut(value = "putCache", key = "#id")
     public int insertData(User user) {
         return userMapper.insertSelective(user);
     }
 
     @Override
-    @Cacheable(value = "test", key = "#id")
+    @Cacheable(value = "selectCache", key = "#id")
     public User selectOneInfo(int id) {
         return userMapper.selectByPrimaryKey(id);
     }
