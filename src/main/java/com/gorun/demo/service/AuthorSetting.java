@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "author")
+@ConfigurationProperties(prefix = "author")//读取默认配置文件中以author开头的参数
 public class AuthorSetting {
     private String name;
     private String address;
