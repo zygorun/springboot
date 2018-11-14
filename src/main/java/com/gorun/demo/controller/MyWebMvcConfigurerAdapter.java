@@ -20,6 +20,7 @@ public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+//        直接访问到login.jsp,省去在控制器中的代码
         registry.addViewController("/toLogin").setViewName("login");
     }
 }
