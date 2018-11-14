@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 public class OverallExceptionHandler {
     public static final String ERROR_VIEW = "error";
-    @ExceptionHandler(value=Exception.class)
+
+    @ExceptionHandler(value = Exception.class)
     public Object errorHandler(HttpServletRequest request,
                                HttpServletResponse response, Exception e) throws Exception {
         e.printStackTrace();

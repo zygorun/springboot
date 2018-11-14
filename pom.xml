@@ -7,7 +7,7 @@
     <groupId>com.gorun</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>springboot</name>
     <description>Demo project for Spring Boot</description>

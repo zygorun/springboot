@@ -54,10 +54,4 @@ public class UserController {
     public User selectOneInfo(int id) {
         return userService.selectOneInfo(id);
     }
-
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "login";
-    }
-
 }
