@@ -7,18 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/select", produces = {"application/json;" +
-            "charset=UTF-8"})
-    public List<User> select() {
-        return userService.allData();
+    @RequestMapping(value = "/select")
+    public HttpResultModel select() {
+        return sendResult(userService.allData(), null);
     }
 
     @RequestMapping(value = "/insertRollBack", produces = {"application/json;" +

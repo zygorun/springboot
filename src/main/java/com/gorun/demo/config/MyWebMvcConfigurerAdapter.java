@@ -1,4 +1,4 @@
-package com.gorun.demo.controller;
+package com.gorun.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
