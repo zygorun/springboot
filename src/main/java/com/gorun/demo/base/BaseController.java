@@ -1,4 +1,4 @@
-package com.gorun.demo.controller;
+package com.gorun.demo.base;
 
 public class BaseController {
     protected <T> HttpResultModel<T> sendResult(T result, Integer total) {

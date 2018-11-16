@@ -1,4 +1,4 @@
-package com.gorun.demo.controller;
+package com.gorun.demo.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
