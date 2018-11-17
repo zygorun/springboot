@@ -14,6 +14,6 @@ public class RedisController extends BaseController {
 
     @RequestMapping("/value")
     public String redis() {
-        return stringRedisTemplate.opsForValue().get("age");
+        return stringRedisTemplate.opsForValue().get("address");
     }
 }

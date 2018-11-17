@@ -4,7 +4,9 @@ import com.gorun.demo.base.BaseController;
 import com.gorun.demo.base.HttpResultModel;
 import com.gorun.demo.model.User;
 import com.gorun.demo.service.UserService;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,10 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController extends BaseController {
     @Autowired
     UserService userService;
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+    String result;
 
     @RequestMapping(value = "/select")
     public HttpResultModel select() {
-        return sendResult(userService.allData(), null);
+        if (this.result == null) {
+            stringRedisTemplate.opsForValue().set("user",
+                    JSONArray.fromObject(userService.allData()).toString());
+        }
+        this.result = stringRedisTemplate.opsForValue().get("user");
+        return sendResult(JSONArray.fromObject(this.result), null);
+
     }
 
     @RequestMapping(value = "/insertRollBack", produces = {"application/json;" +
