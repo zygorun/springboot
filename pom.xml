@@ -108,17 +108,24 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        <!--覆盖默认内嵌的tomcat依赖-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!--guava缓存-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>11.0.2</version>
         </dependency>
-
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--redis依赖-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.data</groupId>-->
@@ -151,7 +158,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.gorun.demo.SpringbootApplication</mainClass>
-                    <fork>true</fork>
+                    <executable>true</executable>
                 </configuration>
             </plugin>
             <!-- mybatis generator 自动生成代码插件 -->

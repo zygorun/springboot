@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
 //开启缓存
 @EnableCaching
 @MapperScan("com.gorun.demo.mapper")
+
 public class SpringbootApplication {
 
     public static void main(String[] args) {

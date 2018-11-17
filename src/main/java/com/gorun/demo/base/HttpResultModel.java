@@ -9,7 +9,6 @@ public class HttpResultModel<T> {
     private Long sendTime;  //UTC 时间戳
     private T data;
 
-
     public String getError() {
         return error;
     }
