@@ -52,4 +52,9 @@ public class UserController extends BaseController {
     public HttpResultModel selectOneInfo(int id) {
         return sendResult(userService.selectOneInfo(id), null);
     }
+
+    @RequestMapping("/updateInfo")
+    public HttpResultModel updateInfo(User user) {
+        return sendResult(userService.updateInfo(user), null);
+    }
 }
