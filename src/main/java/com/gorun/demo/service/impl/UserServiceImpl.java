@@ -2,19 +2,20 @@ package com.gorun.demo.service.impl;
 
 import com.gorun.demo.mapper.UserMapper;
 import com.gorun.demo.model.User;
+import com.gorun.demo.service.RedisService;
 import com.gorun.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RedisService redisService;
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -30,14 +31,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectOneInfo(int id) {
         String key = "user_" + id;
-        ValueOperations<String, User> operations = redisTemplate.opsForValue();
         boolean hasKey = redisTemplate.hasKey(key);
         if (hasKey) {
-            User user = operations.get(key);
+            User user = (User) redisService.get(key);
             return user;
         } else {
             User user = userMapper.selectByPrimaryKey(id);
-            operations.set(key, user, 5, TimeUnit.MINUTES);
+            redisService.set(key, user);
             return user;
         }
 

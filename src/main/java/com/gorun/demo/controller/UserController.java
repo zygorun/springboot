@@ -44,13 +44,12 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/insert", produces = {"application/json;" +
             "charset=UTF-8"})
-    public int insert(User user) {
-        return userService.insertData(user);
+    public HttpResultModel insert(User user) {
+        return sendResult(userService.insertData(user), null);
     }
 
-    @RequestMapping(value = "/selectOneInfo", produces = {"application/json;" +
-            "charset=UTF-8"})
-    public User selectOneInfo(int id) {
-        return userService.selectOneInfo(id);
+    @RequestMapping(value = "/selectOneInfo")
+    public HttpResultModel selectOneInfo(int id) {
+        return sendResult(userService.selectOneInfo(id), null);
     }
 }

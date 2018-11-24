@@ -10,4 +10,6 @@ public interface UserService {
     int insertData(User user);
 
     User selectOneInfo(int id);
+
+    int updateInfo(User user);
 }
