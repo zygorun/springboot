@@ -6,6 +6,7 @@ import com.gorun.demo.model.User;
 import com.gorun.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +21,7 @@ public class UserController extends BaseController {
         return sendResult(userService.allData(), null);
     }
 
-    @RequestMapping(value = "/insertRollBack", produces = {"application/json;" +
-            "charset=UTF-8"})
+    @RequestMapping(value = "/insertRollBack")
     @Transactional(rollbackFor = {IllegalArgumentException.class})//表示数据存在回滚
     public int insertRollBack(User user) {
         int res = userService.insertData(user);
@@ -31,8 +31,7 @@ public class UserController extends BaseController {
         return res;
     }
 
-    @RequestMapping(value = "/insertWithoutRollBack", produces = {"application/json;" +
-            "charset=UTF-8"})
+    @RequestMapping(value = "/insertWithoutRollBack")
     @Transactional(noRollbackFor = {IllegalArgumentException.class})//表示数据存在不回滚
     public int insertWithoutRollBack(User user) {
         int res = userService.insertData(user);
@@ -42,8 +41,7 @@ public class UserController extends BaseController {
         return res;
     }
 
-    @RequestMapping(value = "/insert", produces = {"application/json;" +
-            "charset=UTF-8"})
+    @RequestMapping(value = "/insert")
     public HttpResultModel insert(User user) {
         return sendResult(userService.insertData(user), null);
     }
@@ -53,7 +51,7 @@ public class UserController extends BaseController {
         return sendResult(userService.selectOneInfo(id), null);
     }
 
-    @RequestMapping("/updateInfo")
+    @PostMapping("/updateInfo")
     public HttpResultModel updateInfo(User user) {
         return sendResult(userService.updateInfo(user), null);
     }
